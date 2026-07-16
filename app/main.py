@@ -71,8 +71,7 @@ def create_doctor(doctor_data: schemas.DoctorCreate, db: Session = Depends(get_d
 def get_doctors(clinic_id: Optional[int] = None, db: Session = Depends(get_db)):
     if clinic_id is not None:
         return crud.get_doctors_by_clinic(db, clinic_id)
-    import models
-    return db.query(models.Doctor).all()
+    return crud.get_all_doctors(db)
 
 @app.get("/doctors/{doctor_id}", response_model=schemas.DoctorResponse, tags=["Doctor"])
 def get_doctor_detail(doctor_id: int, db: Session = Depends(get_db)):

@@ -95,6 +95,9 @@ def update_doctor(db: Session, doctor_id: int, doctor_update: schemas.DoctorUpda
         db.rollback()
         raise HTTPException(status_code=400, detail=f"Lỗi cập nhật bác sĩ: {str(e)}")
 
+def get_all_doctors(db: Session):
+    return db.query(models.Doctor).all()
+
 
 
 def delete_license(db: Session, license_id: int):
